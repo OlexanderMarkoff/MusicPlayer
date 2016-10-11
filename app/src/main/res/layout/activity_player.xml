@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/top_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_3">
+
+        <ImageView
+            android:id="@+id/btn_shuffle"
+            style="@style/PlayerButtons"
+            android:src="@mipmap/ic_shuffle"
+        android:stateListAnimator="@anim/shake_buton_anim"/>
+
+        <ImageView
+            android:id="@+id/btn_add"
+            style="@style/PlayerButtons"
+            android:src="@mipmap/ic_add"/>
+
+        <ImageView
+            android:id="@+id/btn_repeat"
+            style="@style/PlayerButtons"
+            android:src="@mipmap/ic_repeat"/>
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/contentList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/progress_bar"
+        android:layout_below="@+id/top_panel"
+        tools:listitem="@layout/item_playlist"/>
+
+    <TextView
+        android:id="@+id/txt_progress_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/player_panel"
+        android:layout_alignLeft="@+id/progress_bar"
+        android:paddingLeft="@dimen/padding_3"
+        android:textSize="@dimen/text_size_8"
+        tools:text="00:00"/>
+
+    <TextView
+        android:id="@+id/txt_full_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/player_panel"
+        android:layout_alignRight="@+id/progress_bar"
+        android:paddingRight="@dimen/padding_3"
+        android:textSize="@dimen/text_size_8"
+        tools:text="00:00"/>
+
+    <SeekBar
+        android:id="@+id/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/txt_progress_time"/>
+
+    <LinearLayout
+        android:id="@+id/player_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_3">
+
+        <ImageView
+            android:id="@+id/btn_prev"
+            style="@style/PlayerButtons"
+            android:src="@mipmap/ic_previous"/>
+
+        <ImageView
+            android:id="@+id/btn_stop"
+            style="@style/PlayerButtons"
+            android:src="@mipmap/ic_stop"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/btn_play_pause"
+            style="@style/PlayerButtons"
+            android:src="@mipmap/ic_play"/>
+
+        <ImageView
+            android:id="@+id/btn_next"
+            style="@style/PlayerButtons"
+            android:src="@mipmap/ic_next"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

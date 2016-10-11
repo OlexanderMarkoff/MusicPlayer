@@ -8,4 +8,23 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="MainTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/padding_1</item>
+        <item name="android:paddingLeft">@dimen/padding_5</item>
+        <item name="android:paddingStart">@dimen/padding_5</item>
+        <item name="android:paddingRight">@dimen/padding_5</item>
+        <item name="android:paddingEnd">@dimen/padding_5</item>
+        <item name="android:lines">1</item>
+        <item name="android:scrollHorizontally">true</item>
+    </style>
+
+    <style name="PlayerButtons">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+
 </resources>
