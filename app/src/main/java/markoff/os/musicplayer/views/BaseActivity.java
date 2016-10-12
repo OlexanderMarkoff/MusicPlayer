@@ -8,13 +8,14 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import markoff.os.musicplayer.R;
+import markoff.os.musicplayer.presenters.BasePresenter;
 import markoff.os.musicplayer.presenters.Presenter;
 
 /**
  * Created by Markov O on 11.10.16.
  */
 
-public abstract class BaseActivity<T extends Presenter> extends Activity implements android.view.View.OnClickListener {
+public abstract class BaseActivity<T extends Presenter> extends Activity implements View.OnClickListener, MusicPlayerView {
 
     protected T presenter;
 
@@ -24,12 +25,14 @@ public abstract class BaseActivity<T extends Presenter> extends Activity impleme
         initUI();
         setUI();
         setListeners();
+        presenter = getNeededPresenter();
         subscribeToPresenter();
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    public void onBackPressed() {
+        super.onBackPressed();
+        BasePresenter.PresenterManager.removePresenter(presenter);
         unSubscribeFromPresenter();
     }
 
@@ -39,10 +42,17 @@ public abstract class BaseActivity<T extends Presenter> extends Activity impleme
 
     protected abstract void setListeners();
 
+    protected abstract T getNeededPresenter();
 
-    protected abstract void subscribeToPresenter();
+    protected void subscribeToPresenter() {
+       presenter.subscribe(this);
+    }
 
-    protected abstract void unSubscribeFromPresenter();
+    protected void unSubscribeFromPresenter() {
+        if (presenter != null && presenter.unSubscribe(this)) {
+            presenter = null;
+        }
+    }
 
     @Override
     public void onClick(View v) {

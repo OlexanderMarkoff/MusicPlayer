@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import java.util.List;
 
 import markoff.os.musicplayer.R;
+import markoff.os.musicplayer.presenters.BasePresenter;
 import markoff.os.musicplayer.presenters.player.PlayerPresenter;
 import markoff.os.musicplayer.views.BaseActivity;
 import markoff.os.musicplayer.views.PlayerView;
@@ -46,6 +47,11 @@ public class ActivityPlayer extends BaseActivity<PlayerPresenter> implements Pla
 
     }
 
+    @Override
+    protected PlayerPresenter getNeededPresenter() {
+        return (PlayerPresenter) BasePresenter.PresenterManager.getPresenter(PlayerPresenter.class);
+    }
+
     protected void setListeners() {
         btnShuffle.setOnClickListener(this);
         btnAdd.setOnClickListener(this);
@@ -75,16 +81,4 @@ public class ActivityPlayer extends BaseActivity<PlayerPresenter> implements Pla
     public void updateListData(List<?> data) {
 
     }
-
-    @Override
-    protected void subscribeToPresenter() {
-        presenter = PlayerPresenter.getInstance();
-        presenter.subscribe(this);
-    }
-
-    @Override
-    protected void unSubscribeFromPresenter() {
-        presenter.unSubscribe(this);
-    }
-
 }

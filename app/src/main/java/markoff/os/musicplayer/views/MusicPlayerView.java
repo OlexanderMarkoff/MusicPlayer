@@ -8,7 +8,7 @@ import java.util.List;
  * Created by Markov O on 11.10.16.
  */
 
-public interface View {
+public interface MusicPlayerView {
 
     void setListData(List<?> data);
 

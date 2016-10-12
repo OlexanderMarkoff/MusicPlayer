@@ -1,4 +1,4 @@
-package markoff.os.musicplayer.presenters.model;
+package markoff.os.musicplayer.model;
 
 import java.util.List;
 

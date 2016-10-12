@@ -2,20 +2,26 @@ package markoff.os.musicplayer.views.explorer;
 
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
+import java.io.File;
 import java.util.List;
 
 import markoff.os.musicplayer.R;
+import markoff.os.musicplayer.adapters.FilesRecyclerView;
+import markoff.os.musicplayer.presenters.BasePresenter;
 import markoff.os.musicplayer.presenters.explorer.FileExplorerPresenter;
 import markoff.os.musicplayer.views.BaseActivity;
-import markoff.os.musicplayer.views.View;
 
 /**
  * Created by Markov O on 11.10.16.
  */
 
-public class ActivityFileExplorer extends BaseActivity<FileExplorerPresenter> implements View {
+public class ActivityFileExplorer extends BaseActivity<FileExplorerPresenter> {
 
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +31,7 @@ public class ActivityFileExplorer extends BaseActivity<FileExplorerPresenter> im
 
     @Override
     protected void initUI() {
-
+        recyclerView = (RecyclerView) findViewById(R.id.rv_files);
     }
 
     @Override
@@ -39,23 +45,24 @@ public class ActivityFileExplorer extends BaseActivity<FileExplorerPresenter> im
     }
 
     @Override
-    public void onClick(android.view.View v) {
+    public void onClick(View v) {
 
     }
 
     @Override
-    protected void subscribeToPresenter() {
-
-    }
-
-    @Override
-    protected void unSubscribeFromPresenter() {
-
+    protected FileExplorerPresenter getNeededPresenter() {
+        return (FileExplorerPresenter) BasePresenter.PresenterManager.getPresenter(FileExplorerPresenter.class);
     }
 
     @Override
     public void setListData(List<?> data) {
 
+        FilesRecyclerView adapter = new FilesRecyclerView((List<File>) data);
+
+        recyclerView.setHasFixedSize(true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
